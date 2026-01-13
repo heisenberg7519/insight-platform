@@ -3,7 +3,7 @@
 
 ---
 
-# EXECUTIVE SUMMARY (For Hackathon PPT - 1 Slide)
+# EXECUTIVE SUMMARY 
 
 **AMEP** is a unified AI-powered education platform that transforms fragmented classroom data into actionable intelligence through three integrated pillars:
 
@@ -63,7 +63,7 @@
 
 ### 1.1 The Problems We're Solving
 
-**Problem Statement (from PS01):**
+**Problem Statement :**
 > "The inability to provide truly personalized instruction at scale... results in uneven student engagement, overlooked learning difficulties, and inefficient use of instructional time."
 
 **Specific Challenges:**
@@ -228,7 +228,7 @@ they progressed more slowly" - Paper 4.pdf
 
 ### 2.1 The Problems We're Solving
 
-**Problem Statement (from PS01):**
+**Problem Statement :**
 > "Subjective and delayed assessments... result in uneven student engagement, overlooked learning difficulties"
 > "No learner remains unnoticed or unsupported"
 
@@ -590,7 +590,7 @@ PREDICTION MODELS (BR5 Enhancement):
 
 ### 4.1 The Problems We're Solving
 
-**Problem Statement (from PS01):**
+**Problem Statement :**
 > "Increasing teacher workload... fragmented faculty task management"
 > "Eliminating dependency on fragmented tools and reports"
 
