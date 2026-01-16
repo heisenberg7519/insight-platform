@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CheckCircle, Circle, Clock, Users, FileText, Upload, Calendar, AlertTriangle } from 'lucide-react';
 
 // Mock project data
@@ -39,7 +39,30 @@ const mockProject = {
 };
 
 const PBLWorkspace = () => {
-  const [project, setProject] = useState(mockProject);
+  const [project, setProject] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchProject = async () => {
+      try {
+        const response = await fetch('/api/projects/current');
+        if (!response.ok) {
+          throw new Error('Failed to fetch project data');
+        }
+        const data = await response.json();
+        setProject(data);
+      } catch (err) {
+        console.error(err);
+        setError(err.message);
+        setProject(mockProject); // fallback to mock data
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProject();
+  }, []);
   const [activeTab, setActiveTab] = useState('overview');
   const [selectedFile, setSelectedFile] = useState(null);
 
@@ -358,6 +381,18 @@ const PBLWorkspace = () => {
       <ArtifactSubmission />
     </div>
   );
+
+  if (loading) {
+    return <div className="min-h-screen bg-gray-50 p-6 text-gray-600">Loading project...</div>;
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gray-50 p-6 text-red-600">
+        Error loading project: {error}
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
