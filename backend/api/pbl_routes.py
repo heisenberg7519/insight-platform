@@ -96,7 +96,11 @@ def submit_soft_skill_assessment():
         def average_valid(values):
             valid = [v for v in values if v is not None]
             return round(sum(valid) / len(valid), 2) if valid else None
-
+        
+        required_fields = ['team_id', 'assessed_student_id', 'ratings']
+        missing = [f for f in required_fields if f not in data]
+        if missing:
+            return jsonify({'error': f'Missing required fields: {missing}'}), 400
         ratings = data['ratings']
 
         td_avg = average_valid([
@@ -134,10 +138,10 @@ def submit_soft_skill_assessment():
             'assessment_id': str(uuid.uuid4()),
             'team_id': data['team_id'],
             'assessed_student_id': data['assessed_student_id'],
-            'overall_td_score': round(td_avg, 2) if td_avg is not None else None,
-            'overall_ts_score': round(ts_avg, 2) if ts_avg is not None else None,
-            'overall_tm_score': round(tm_avg, 2) if tm_avg is not None else None,
-            'overall_te_score': round(te_avg, 2) if te_avg is not None else None,
+            'overall_td_score': td_avg ,
+            'overall_ts_score': ts_avg ,
+            'overall_tm_score': tm_avg ,
+            'overall_te_score': te_avg ,
             'overall_score': (
                 round(sum(valid_components) / len(valid_components), 2)
                 if valid_components else None
